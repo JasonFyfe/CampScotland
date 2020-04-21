@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+
+<div class="ui container">
+    <div class="ui centered segment">
+        <h1>Create a new Campsite</h1>
+        <form class="ui form" action="/campsites" method="POST">
+            <div class="field">
+                <label for="name">Campsite Name</label>
+                <input type="text" name="name" placeholder="Name">
+            </div>
+            <div class="field">
+                <label for="image">Campsite Image</label>
+                <input type="text" name="image" placeholder="Image URL">
+            </div>
+            <div>
+                <input class="ui button" type="submit">
+            </div>
+        </form>
+    </div>
+    <a href="/campsites">Go Back</a>
+</div>
+
+<%- include("partials/footer") %>

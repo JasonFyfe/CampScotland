@@ -1,0 +1,24 @@
+{
+  "name": "campscotland",
+  "version": "1.0.0",
+  "description": "HND Year 2 Graded Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonfyfe-dev/CampScotland.git"
+  },
+  "author": "Jason Fyfe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonfyfe-dev/CampScotland/issues"
+  },
+  "homepage": "https://github.com/jasonfyfe-dev/CampScotland#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1"
+  }
+}
