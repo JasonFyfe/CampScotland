@@ -1,0 +1,33 @@
+<%- include("partials/header") %>
+
+<div class="ui vertical masthead center aligned segment">
+    <div class="ui text container">
+        <h1 class="ui header">Welcome to Camp Scotland</h1>
+        <h2>View Campsites from all over Scotland!</h2>
+        <a href="/campsites/new">
+            <div class="ui huge primary button">
+                Add New Campsite
+            </div>
+        </a>
+    </div>
+    <div>
+        <div>
+            <h3>Our Most Popular Campsites</h3>
+        </div>
+    </div>
+
+    <div class="ui centered cards">
+        <% campsites.forEach(campsite => { %>
+        <div class="ui card">
+            <div class="image">
+                <img src="<%= campsite.image %>">
+            </div>
+            <div class="content">
+                <h4><%= campsite.name %></h4>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include("partials/footer") %>
