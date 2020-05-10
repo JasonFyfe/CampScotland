@@ -1,37 +1,69 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var port = 3000;
 
-var campsites = [
-    {name: "Salmon Creek", image: "https://cdn.pixabay.com/photo/2016/11/21/16/03/campfire-1846142_960_720.jpg"},
-    {name: "Granite Hill", image: "https://cdn.pixabay.com/photo/2019/07/25/17/09/camp-4363073_960_720.png"},
-    {name: "Mountain Goat's Rest", image: "https://cdn.pixabay.com/photo/2016/02/09/16/35/night-1189929_960_720.jpg"},
-];
-
-app.use(bodyParser.urlencoded({extended: true}));
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect("mongodb://localhost:27017/camp_scotland", { useNewUrlParser: true });
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+
+// SCHEMA SETUP
+var campsiteSchema = new mongoose.Schema({
+    name: String,
+    image: String,
+    description: String
+});
+
+var Campsite = mongoose.model("Campsite", campsiteSchema);
 
 app.get("/", (req, res) => {
     res.render("landing");
 });
 
 app.get("/campsites", (req, res) => {
-    res.render("campsites", {campsites: campsites});
+
+    Campsite.find({}, (err, campsites) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("campsites", { campsites: campsites });
+        }
+    });
 });
 
 app.post("/campsites", (req, res) => {
     var name = req.body.name;
     var image = req.body.image;
-    var newCampsite = {name: name, image: image};
+    var description = req.body.description;
+    var newCampsite = { name: name, image: image, description: description };
 
-    campsites.push(newCampsite);
-    res.redirect("/campsites");
+    Campsite.create(newCampsite, (err, newlyCreated) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/campsites");
+        }
+    });
 });
 
 app.get("/campsites/new", (req, res) => {
     res.render("new");
+});
+
+app.get("/campsites/:id", (req, res) => {
+
+    Campsite.findById(req.params.id, (err, foundCampsite) => {
+        if(err)
+        {
+            console.log(err);
+        } else {
+            res.render("show", {campsite: foundCampsite});
+        }
+    });
 });
 
 app.listen(port, () => {
