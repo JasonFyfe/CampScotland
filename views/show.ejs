@@ -2,8 +2,18 @@
 
 <h1><%= campsite.name %></h1>
 
-<img src="<%= campsite.image %>" alt="">
+<div class="ui card">
+    <div class="image">
+        <img src="<%= campsite.image %>" alt="">
+    </div>
+</div>
 
 <p><%= campsite.description %></p>
+
+<% campsite.comments.forEach(comment => { %>
+ <p>
+     <strong><%= comment.author %> </strong> - <%= comment.text %> 
+ </p>
+<% }); %>
 
 <%- include("partials/footer") %>
