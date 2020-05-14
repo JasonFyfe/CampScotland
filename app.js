@@ -5,7 +5,7 @@ var express = require('express'),
     Comment = require('./models/comment'),
     seedDB = require('./seeds');
     app = express(),
-    port = 3000;
+    port = 4000; //TODO change back to 3000
 
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect("mongodb://localhost:27017/camp_scotland", { useNewUrlParser: true });
@@ -18,6 +18,10 @@ seedDB();
 // LANDING PAGE ROUTE
 app.get("/", (req, res) => {
     res.render("landing");
+});
+
+app.get("/map", (req, res) => {
+    res.render("map");
 });
 
 // INDEX ROUTE - Show all campsites
