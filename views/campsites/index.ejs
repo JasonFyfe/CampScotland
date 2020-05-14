@@ -1,27 +1,28 @@
 <%- include("../partials/header") %>
 
-<div class="ui vertical masthead center aligned segment" style="padding: 1em 0em;">
+<div class="ui vertical masthead center aligned segment">
     <%- include("../partials/navbar") %>
     <div class="ui text container">
-        <h1 class="ui header" style="margin-top: 1.5em; font-size: 3em;">View Campsites from all over Scotland!</h1>
-        <h2 style="font-size: 1.4em;">Or add a new one...</h2>
+        <h1 class="ui header">View Campsites from all over Scotland!</h1>
+        <h2>Or add a new one...</h2>
         <a href="/campsites/new" class="ui huge primary button">Add Campsite</a>
     </div>
 </div>
-<div class="ui three column stackable grid container" style="margin-top: 1em;">
-    <div class="ui centered cards">
-        <% campsites.forEach(campsite => { %>
-        <div class="ui card">
-            <div class="image" style="height: 175px;">
-                <img src="<%= campsite.image %>">
+<div class="nav-correction">
+    <div class="ui three column stackable grid container">
+        <div class="ui centered cards">
+            <% campsites.forEach(campsite => { %>
+            <div class="ui card">
+                <div class="image">
+                    <img src="<%= campsite.image %>">
+                </div>
+                <div class="content">
+                    <h4><%= campsite.name %></h4>
+                    <a href="/campsites/<%= campsite._id %>" class="ui primary button">More Info</a>
+                </div>
             </div>
-            <div class="content">
-                <h4><%= campsite.name %></h4>
-                <a href="/campsites/<%= campsite._id %>" class="ui primary button">More Info</a>
-            </div>
+            <% }); %>
         </div>
-        <% }); %>
     </div>
 </div>
-
 <%- include("../partials/footer") %>

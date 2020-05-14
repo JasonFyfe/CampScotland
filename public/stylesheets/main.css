@@ -1,0 +1,47 @@
+#logo {
+  margin-right: 1.5em;
+}
+
+#map-container {
+    width: 260px;
+    height: 310px;
+}
+
+#map {
+    height: 100%;
+}
+
+.masthead {
+  min-height: 500px;
+  padding: 1em 0em;
+}
+
+.ui.text.container > h1 {
+  margin-top: 3em;
+  font-size: 4em;
+}
+
+.ui.text.container > h2 {
+  font-size: 1.6em;
+}
+
+.ui.text.container > .ui.header {
+  margin-top: 1.5em;
+  font-size: 3em;
+}
+
+.ui.fluid.image {
+  margin-bottom: 1em;
+}
+
+.nav-correction {
+  margin-top: 5em;
+}
+
+.ui.card > .image {
+  height: 175px;
+}
+
+h1 {
+  margin-left: 1em;
+}

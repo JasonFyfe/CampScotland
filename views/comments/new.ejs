@@ -1,7 +1,7 @@
 <%- include("../partials/header") %>
 <%- include("../partials/navbar") %>
 
-<div class="ui container" style="margin-top: 50px;">
+<div class="ui container nav-correction">
     <div class="ui centered segment">
         <h1>Add Comment to <%= campsite.name %></h1>
         <form class="ui form" action="/campsites/<%= campsite._id %>/comments" method="POST">
