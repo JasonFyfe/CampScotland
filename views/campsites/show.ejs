@@ -1,53 +1,55 @@
 <%- include("../partials/header") %>
 <%- include("../partials/navbar") %>
-
-<div class="ui three column stackable grid segment container" style="margin-top: 5em;">
-    <div class="ui row" style="margin-left: 1em;">
-        <h1><%= campsite.name %></h1>
-    </div>
-    <div class="ui divider"></div>
-    <div class="ui row">
-        <div class="ui four wide column">
-            <div class="ui raised segments">
-                <div class="ui segment">One</div>
-                <div class="ui segment">Two</div>
-                <div class="ui segment">Three</div>
-            </div>
-            <div class="ui divider"></div>
-            <%- include("../map") %>
+<div class="nav-correction">
+    <div class="ui three column stackable grid segment container nav-correction">
+        <div class="ui row">
+            <h1><%= campsite.name %></h1>
         </div>
-        <div class="ui twelve wide column">
-            <div class="ui segment">
-                <div class="ui fluid image">
-                    <img src="<%= campsite.image %>" alt="">
+        <div class="ui divider"></div>
+        <div class="ui row">
+            <div class="ui four wide column">
+                <div class="ui raised segments">
+                    <div class="ui segment">One</div>
+                    <div class="ui segment">Two</div>
+                    <div class="ui segment">Three</div>
                 </div>
-                <div class="ui grid">
-                    <div class="ui row" style="margin-top: 1em;">
-                        <div class="ui thirteen wide column"><%= campsite.description %></div>
-                        <div class="ui three wide column">
-                            <div class="ui right aligned container">
-                                <h4>£9.00/night</h4>
+                <div class="ui divider"></div>
+                <%- include("../map") %>
+            </div>
+            <div class="ui twelve wide column">
+                <div class="ui container">
+                    <div class="ui fluid image">
+                        <img src="<%= campsite.image %>" alt="">
+                    </div>
+                    <div class="ui grid">
+                        <div class="ui row">
+                            <div class="ui thirteen wide column"><%= campsite.description %></div>
+                            <div class="ui three wide column">
+                                <div class="ui right aligned container">
+                                    <h4>£9.00/night</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="ui divider"></div>
+                    <div class="ui content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad aliquam cumque temporibus
+                            ducimus!
+                            Magnam, natus quo cupiditate laborum porro dignissimos quasi dicta quas dolorum dolore ea
+                            suscipit ullam quaerat reprehenderit?</p>
+                    </div>
                 </div>
-                <div class="ui divider"></div>
-                <div class="ui content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad aliquam cumque temporibus ducimus!
-                        Magnam, natus quo cupiditate laborum porro dignissimos quasi dicta quas dolorum dolore ea
-                        suscipit ullam quaerat reprehenderit?</p>
+                <div class="ui secondary segment">
+                    <div class="ui right aligned container">
+                        <a href="/campsites/<%= campsite._id %>/comments/new" class="ui primary button">Add Comment</a>
+                    </div>
+                    <% campsite.comments.forEach(comment => { %>
+                    <div class="ui divider"></div>
+                    <p>
+                        <strong><%= comment.author %></strong> - <%= comment.text %>
+                    </p>
+                    <% }); %>
                 </div>
-            </div>
-            <div class="ui secondary segment">
-                <div class="ui right aligned container">
-                    <a href="/campsites/<%= campsite._id %>/comments/new" class="ui primary button">Add Comment</a>
-                </div>
-                <% campsite.comments.forEach(comment => { %>
-                <div class="ui divider"></div>
-                <p>
-                    <strong><%= comment.author %></strong> - <%= comment.text %>
-                </p>
-                <% }); %>
             </div>
         </div>
     </div>
