@@ -22,6 +22,13 @@ var data =
 ]
 
 function seedDB() {
+    Comment.remove({}, (err) => {
+        if(err) {
+            console.log(err);
+        }
+        console.log("Removed all comments!");
+    });
+    
     Campsite.remove({}, (err) => {
         if(err) {
             console.log(err);

@@ -1,16 +1,17 @@
 <%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
 
-<div class="ui container">
+<div class="ui container" style="margin-top: 50px;">
     <div class="ui centered segment">
         <h1>Add Comment to <%= campsite.name %></h1>
         <form class="ui form" action="/campsites/<%= campsite._id %>/comments" method="POST">
             <div class="field">
-                <label for="comment[text]">Campsite Name</label>
-                <input type="text" name="comment[text]" placeholder="Text">
+                <label for="comment[author]">Your Name</label>
+                <input type="text" name="comment[author]" placeholder="Author">
             </div>
             <div class="field">
-                <label for="comment[author]">Campsite Description</label>
-                <input type="text" name="comment[author]" placeholder="author">
+                <label for="comment[text]">Comment Text</label>
+                <input type="text" name="comment[text]" placeholder="Comment...">
             </div>
             <div>
                 <input class="ui button" type="submit">
