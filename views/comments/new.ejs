@@ -6,10 +6,6 @@
         <h1>Add Comment to <%= campsite.name %></h1>
         <form class="ui form" action="/campsites/<%= campsite._id %>/comments" method="POST">
             <div class="field">
-                <label for="comment[author]">Your Name</label>
-                <input type="text" name="comment[author]" placeholder="Author">
-            </div>
-            <div class="field">
                 <label for="comment[text]">Comment Text</label>
                 <input type="text" name="comment[text]" placeholder="Comment...">
             </div>

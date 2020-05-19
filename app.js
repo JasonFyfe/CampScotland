@@ -10,6 +10,8 @@ var express = require('express'),
     // eslint-disable-next-line no-unused-vars
     Comment = require('./models/comment'),
     User = require('./models/user'),
+    // TODO ESLINT
+    // eslint-disable-next-line no-unused-vars
     seedDB = require('./seeds'),
     app = express(),
     port = 4000; //TODO change back to 3000
@@ -25,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
-seedDB();
+// seedDB(); - Seeds the Database
 
 // Passport configuration
 app.use(require('express-session')({
