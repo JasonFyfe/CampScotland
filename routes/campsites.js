@@ -15,12 +15,18 @@ router.get("/", (req, res) => {
 });
 
 // CREATE ROUTE - Add a new campsite to DB
-router.post("/", (req, res) => {
+router.post("/", isLoggedIn, (req, res) => {
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description;
-    var newCampsite = { name: name, image: image, description: description };
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    var newCampsite = { name: name, image: image, description: description, author: author };
 
+    // TODO ESLINT
+    // eslint-disable-next-line no-unused-vars
     Campsite.create(newCampsite, (err, newlyCreated) => {
         if(err){
             console.log(err);
@@ -31,7 +37,7 @@ router.post("/", (req, res) => {
 });
 
 // NEW - Show form to create a new campsite
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
     res.render("campsites/new");
 });
 
@@ -45,5 +51,14 @@ router.get("/:id", (req, res) => {
         }
     });
 });
+
+// Middleware
+// TODO Refactor to seperate file
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;

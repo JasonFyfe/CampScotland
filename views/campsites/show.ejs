@@ -23,7 +23,9 @@
                     </div>
                     <div class="ui grid">
                         <div class="ui row">
-                            <div class="ui thirteen wide column"><%= campsite.description %></div>
+                            <div class="ui thirteen wide column">
+                                <em>Created By - <%= campsite.author.username %></em>
+                            </div>
                             <div class="ui three wide column">
                                 <div class="ui right aligned container">
                                     <h4>£9.00/night</h4>
@@ -33,10 +35,7 @@
                     </div>
                     <div class="ui divider"></div>
                     <div class="ui content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad aliquam cumque temporibus
-                            ducimus!
-                            Magnam, natus quo cupiditate laborum porro dignissimos quasi dicta quas dolorum dolore ea
-                            suscipit ullam quaerat reprehenderit?</p>
+                        <p><%= campsite.description %></p>
                     </div>
                 </div>
                 <div class="ui secondary segment">
@@ -46,7 +45,7 @@
                     <% campsite.comments.forEach(comment => { %>
                     <div class="ui divider"></div>
                     <p>
-                        <strong><%= comment.author %></strong> - <%= comment.text %>
+                        <strong><%= comment.author.username %></strong> - <%= comment.text %>
                     </p>
                     <% }); %>
                 </div>
