@@ -1,0 +1,21 @@
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="ui container nav-correction">
+    <div class="ui center aligned grid">
+        <div class="ui segment column" id="form">
+            <form class="ui form" action="/login" method="POST">
+                <h1>LOGIN</h1>
+                <div class="field">
+                    <input type="text" name="username" placeholder="username">
+                </div>
+                <div class="field">
+                    <input type="password" name="password" placeholder="password">
+                </div>
+                <button class="ui primary button">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
