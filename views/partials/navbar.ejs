@@ -6,15 +6,18 @@
         </a>
         <a href="/campsites" class="item">Campsites</a>
         <div class="right menu">
+            <% if (!currentUser) { %>
             <div class="item">
-                <a href="" class="ui inverted button">Log In</a>
+                <a href="/login" class="ui inverted button">Log In</a>
             </div>
             <div class="item">
-                <a href="" class="ui inverted button">Sign Up</a>
+                <a href="/register" class="ui inverted button">Sign Up</a>
             </div>
+            <% } else { %>
             <div class="item">
-                <a href="" class="ui inverted button">Logout</a>
+                <a href="/logout" class="ui inverted button">Logout</a>
             </div>
+            <% } %>
         </div>
     </div>
 </div>

@@ -1,9 +1,12 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local'),
     Campsite = require('./models/campsite'),
     Comment = require('./models/comment'),
-    seedDB = require('./seeds');
+    User = require('./models/user'),
+    seedDB = require('./seeds'),
     app = express(),
     port = 4000; //TODO change back to 3000
 
@@ -15,13 +18,26 @@ app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
 seedDB();
 
+// Passport configuration
+app.use(require('express-session')({
+    secret: "Secret needed here",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
+
 // LANDING PAGE ROUTE
 app.get("/", (req, res) => {
     res.render("landing");
-});
-
-app.get("/map", (req, res) => {
-    res.render("map");
 });
 
 // INDEX ROUTE - Show all campsites
@@ -69,9 +85,9 @@ app.get("/campsites/:id", (req, res) => {
 });
 
 // ====================
-// COMMENT ROUTES
+//    COMMENT ROUTES
 // ====================
-app.get("/campsites/:id/comments/new", (req, res) => {
+app.get("/campsites/:id/comments/new", isLoggedIn, (req, res) => {
     Campsite.findById(req.params.id, (err, campsite) => {
         if(err){
             console.log(err);
@@ -81,7 +97,7 @@ app.get("/campsites/:id/comments/new", (req, res) => {
     });
 });
 
-app.post("/campsites/:id/comments", (req, res) => {
+app.post("/campsites/:id/comments", isLoggedIn, (req, res) => {
     Campsite.findById(req.params.id, (err, campsite) => {
         if(err){
             console.log(err);
@@ -100,6 +116,55 @@ app.post("/campsites/:id/comments", (req, res) => {
         }
     });
 });
+
+// ====================
+//     AUTH ROUTES
+// ====================
+
+// Register Form
+app.get("/register", (req, res) => {
+    res.render("auth/register");
+});
+// Register POST route
+app.post("/register", (req, res) => {
+    var newUser = new User({ username: req.body.username });
+    User.register(newUser, req.body.password, (err, user) => {
+        if(err) {
+            console.log("Registration Error!");
+            console.log(err);
+            return res.render("auth/register");
+        }
+        passport.authenticate("local")(req, res, () => {
+            res.redirect("/campsites");
+        });
+    });
+});
+
+// Login Form
+app.get("/login", (req, res) => {
+    res.render("auth/login");
+});
+// Login POST route
+app.post("/login", passport.authenticate("local",
+    {
+        successRedirect: "/campsites",
+        failureRedirect: "/login"
+    }),
+    (req, res) => {}
+);
+
+// Logout route
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/campsites");
+});
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 app.listen(port, () => {
     console.log(`Camp Scotland Server listening on port: ${port}`);

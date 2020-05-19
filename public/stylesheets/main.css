@@ -11,6 +11,10 @@
     height: 100%;
 }
 
+#form {
+  max-width: 450px;
+}
+
 .masthead {
   min-height: 500px;
   padding: 1em 0em;
