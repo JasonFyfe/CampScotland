@@ -3,26 +3,26 @@
 
 <div class="ui container nav-correction">
     <div class="ui centered segment">
-        <h1>Create a new Campsite</h1>
-        <form class="ui form" action="/campsites" method="POST">
+        <h1>Edit <%= campsite.name %></h1>
+        <form class="ui form" action="/campsites/<%= campsite._id %>?_method=PUT" method="POST">
             <div class="field">
                 <label for="name">Campsite Name</label>
-                <input type="text" name="name" placeholder="Name">
+                <input type="text" name="campsite[name]" value="<%= campsite.name %>">
             </div>
             <div class="field">
                 <label for="image">Campsite Image</label>
-                <input type="text" name="image" placeholder="Image URL">
+                <input type="text" name="campsite[image]" value="<%= campsite.image %>">
             </div>
             <div class="field">
                 <label for="description">Campsite Description</label>
-                <input type="text" name="description" placeholder="Description">
+                <input type="text" name="campsite[description]" value="<%= campsite.description %>">
             </div>
             <div>
                 <input class="positive ui button" type="submit">
             </div>
         </form>
     </div>
-    <a href="/campsites">Go Back</a>
+    <a href="/campsites/<%= campsite.id %>">Go Back</a>
 </div>
 
 <%- include("../partials/footer") %>

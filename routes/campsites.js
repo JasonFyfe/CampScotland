@@ -28,7 +28,7 @@ router.post("/", isLoggedIn, (req, res) => {
     // TODO ESLINT
     // eslint-disable-next-line no-unused-vars
     Campsite.create(newCampsite, (err, newlyCreated) => {
-        if(err){
+        if (err) {
             console.log(err);
         } else {
             res.redirect("/campsites");
@@ -44,18 +44,63 @@ router.get("/new", isLoggedIn, (req, res) => {
 // SHOW - Shows more info about one campsite
 router.get("/:id", (req, res) => {
     Campsite.findById(req.params.id).populate("comments").exec((err, foundCampsite) => {
-        if(err) {
+        if (err) {
             console.log(err);
         } else {
-            res.render("campsites/show", {campsite: foundCampsite});
+            res.render("campsites/show", { campsite: foundCampsite });
         }
     });
 });
 
+// EDIT
+router.get("/:id/edit", (req, res) => {
+    Campsite.findById(req.params.id, (err, foundCampsite) => {
+        if (err) {
+            res.redirect("/campsites");
+        } else {
+            res.render("campsites/edit", { campsite: foundCampsite });
+        }
+    });
+});
+
+// UPDATE
+router.put("/:id", (req, res) => {
+    // TODO ESLINT
+    // eslint-disable-next-line no-unused-vars
+    Campsite.findByIdAndUpdate(req.params.id, req.body.campsite, (err, updatedCampsite) => {
+        if (err) {
+            res.redirect("/campsites");
+        } else {
+            res.redirect(`/campsites/${req.params.id}`);
+        }
+    });
+});
+
+// DESTROY
+// router.delete("/:id", (req, res) => {
+//     Campsite.findByIdAndRemove(req.params.id, (err) => {
+//         if (err) {
+//             res.redirect("/campsites");
+//         } else {
+//             res.redirect("/campsites");
+//         }
+//     });
+// });
+router.delete("/:id", async(req, res) => {
+    try {
+        let foundCampsite = await Campsite.findById(req.params.id);
+        await foundCampsite.remove();
+        res.redirect("/campsites");
+    } catch (error) {
+        console.log(error.message);
+        res.redirect("/campsites");
+    }
+});
+
 // Middleware
 // TODO Refactor to seperate file
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect("/login");

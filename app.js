@@ -3,6 +3,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
+    methodOverride = require('method-override'),
     // TODO ESLINT
     // eslint-disable-next-line no-unused-vars
     Campsite = require('./models/campsite'),
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 // seedDB(); - Seeds the Database
 
 // Passport configuration
