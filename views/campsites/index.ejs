@@ -5,21 +5,24 @@
     <div class="ui text container">
         <h1 class="ui header">View Campsites from all over Scotland!</h1>
         <h2>Or add a new one...</h2>
-        <a href="/campsites/new" class="ui huge primary button">Add Campsite</a>
+        <a href="/campsites/new" class="ui huge teal button">Add Campsite</a>
     </div>
 </div>
 <div class="nav-correction">
-    <div class="ui three column stackable grid container">
-        <div class="ui centered cards">
+    <div class="ui container">
+        <div class="ui four stackable cards">
             <% campsites.forEach(campsite => { %>
             <div class="ui card">
-                <div class="image">
-                    <img src="<%= campsite.image %>">
-                </div>
+                <img class="image" src="<%= campsite.image %>">
                 <div class="content">
-                    <h4><%= campsite.name %></h4>
-                    <a href="/campsites/<%= campsite._id %>" class="ui primary button">More Info</a>
+                    <div class="header">
+                        <%= campsite.name %>
+                    </div>
+                    <div class="description">
+                        <%= campsite.description %> 
+                    </div>
                 </div>
+                <a href="/campsites/<%= campsite._id %>" class="ui bottom attached teal button">More Info</a>
             </div>
             <% }); %>
         </div>

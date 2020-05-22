@@ -23,10 +23,18 @@
                     </div>
                     <div class="ui grid">
                         <div class="ui row">
-                            <div class="ui thirteen wide column">
+                            <div class="ui three wide column">
                                 <em>Created By - <%= campsite.author.username %></em>
                             </div>
-                            <div class="ui three wide column">
+                            <div class="ui two wide column">
+                                <a href="/campsites/<%= campsite._id %>/edit" class="ui orange button">Edit</a>
+                            </div>
+                            <div class="ui two wide column">
+                                <form class="inline fields" action="/campsites/<%= campsite._id %>?_method=DELETE" method="POST">
+                                    <button class="negative ui button">Delete</button>
+                                </form>
+                            </div>
+                            <div class="ui nine wide column">
                                 <div class="ui right aligned container">
                                     <h4>£9.00/night</h4>
                                 </div>
@@ -40,7 +48,7 @@
                 </div>
                 <div class="ui secondary segment">
                     <div class="ui right aligned container">
-                        <a href="/campsites/<%= campsite._id %>/comments/new" class="ui primary button">Add Comment</a>
+                        <a href="/campsites/<%= campsite._id %>/comments/new" class="ui teal button">Add Comment</a>
                     </div>
                     <% campsite.comments.forEach(comment => { %>
                     <div class="ui divider"></div>

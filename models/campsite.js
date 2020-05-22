@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const Comment = require('./comment');
 
 // SCHEMA SETUP
 var campsiteSchema = new mongoose.Schema({
@@ -19,6 +20,15 @@ var campsiteSchema = new mongoose.Schema({
             ref: "Comment"
         }
     ],
+});
+
+// Pre-Hook - When a campsite is destroyed attempt to destroy all associated comments.
+campsiteSchema.pre('remove', async function() {
+    await Comment.remove({
+        _id: {
+            $in: this.comments
+        }
+    });
 });
 
 module.exports = mongoose.model("Campsite", campsiteSchema);
