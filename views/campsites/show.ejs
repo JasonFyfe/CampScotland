@@ -3,7 +3,9 @@
 <div class="nav-correction">
     <div class="ui three column stackable grid segment container nav-correction">
         <div class="ui row">
-            <h1><%= campsite.name %></h1>
+            <div class="ui column">
+                <h1><%= campsite.name %></h1>
+            </div>
         </div>
         <div class="ui divider"></div>
         <div class="ui row">
@@ -26,7 +28,7 @@
                     <div class="ui grid">
                         <div class="ui row">
                             <div class="ui three wide column">
-                                <em>Created By - <%= campsite.author.username %></em>
+                                <em>Created By - <strong style="text-transform: uppercase;"><%= campsite.author.username %></strong></em>
                             </div>
                             <div class="ui two wide column">
                                 <% if (currentUser && campsite.author.id.equals(currentUser._id)) { %>
@@ -54,15 +56,54 @@
                     </div>
                 </div>
                 <div class="ui secondary segment">
-                    <div class="ui right aligned container">
-                        <a href="/campsites/<%= campsite._id %>/comments/new" class="ui teal button">Add Comment</a>
+                    <div class="ui grid">
+                        <div class="ui row">
+                            <div class="ui right aligned column">
+                                <a href="/campsites/<%= campsite._id %>/comments/new" class="ui teal button">Add
+                                    Comment</a>
+                            </div>
+                        </div>
+                        <% campsite.comments.forEach(comment => { %>
+                        <div class="ui divider"></div>
+                        <div class="ui row">
+                            <div class="ui five wide column">
+                                Posted by - <strong
+                                    style="text-transform: uppercase;"><%= comment.author.username %></strong>
+                            </div>
+                            <div class="ui right aligned eleven wide column">
+                                10 days ago
+                            </div>
+                        </div>
+                        <!-- TODO refactor to CSS -->
+                        <div class="ui row" style="padding-top: 0;">
+                            <div class="ui fourteen wide column">
+                                <p>
+                                    <%= comment.text %>
+                                </p>
+                            </div>
+                        </div>
+                        <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                        <div class="ui row" style="padding-top: 0;">
+                            <div class="ui two wide column">
+                                <a href="/campsites/<%= campsite._id %>/comments/<%= comment._id %>/edit"
+                                    class="mini ui basic orange button">
+                                    <i class="edit icon"></i>
+                                    Edit
+                                </a>
+                            </div>
+                            <div class="ui three wide column">
+                                <form action="/campsites/<%= campsite._id %>/comments/<%= comment._id %>?_method=DELETE"
+                                    method="POST">
+                                    <button type="submit" class="mini ui basic red button">
+                                        <i class="delete icon"></i>
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% }); %>
                     </div>
-                    <% campsite.comments.forEach(comment => { %>
-                    <div class="ui divider"></div>
-                    <p>
-                        <strong><%= comment.author.username %></strong> - <%= comment.text %>
-                    </p>
-                    <% }); %>
                 </div>
             </div>
         </div>
