@@ -53,18 +53,14 @@ router.get("/:id", (req, res) => {
 });
 
 // EDIT
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", checkCampsiteOwnership, (req, res) => {
     Campsite.findById(req.params.id, (err, foundCampsite) => {
-        if (err) {
-            res.redirect("/campsites");
-        } else {
-            res.render("campsites/edit", { campsite: foundCampsite });
-        }
+        res.render("campsites/edit", { campsite: foundCampsite });
     });
 });
 
 // UPDATE
-router.put("/:id", (req, res) => {
+router.put("/:id", checkCampsiteOwnership, (req, res) => {
     // TODO ESLINT
     // eslint-disable-next-line no-unused-vars
     Campsite.findByIdAndUpdate(req.params.id, req.body.campsite, (err, updatedCampsite) => {
@@ -77,16 +73,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DESTROY
-// router.delete("/:id", (req, res) => {
-//     Campsite.findByIdAndRemove(req.params.id, (err) => {
-//         if (err) {
-//             res.redirect("/campsites");
-//         } else {
-//             res.redirect("/campsites");
-//         }
-//     });
-// });
-router.delete("/:id", async(req, res) => {
+router.delete("/:id", checkCampsiteOwnership, async (req, res) => {
     try {
         let foundCampsite = await Campsite.findById(req.params.id);
         await foundCampsite.remove();
@@ -104,6 +91,24 @@ function isLoggedIn(req, res, next) {
         return next();
     }
     res.redirect("/login");
+}
+
+function checkCampsiteOwnership(req, res, next) {
+    if (req.isAuthenticated()) {
+        Campsite.findById(req.params.id, (err, foundCampsite) => {
+            if (err) {
+                res.redirect("back");
+            } else {
+                if (foundCampsite.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
 }
 
 module.exports = router;

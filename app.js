@@ -22,6 +22,7 @@ var campsiteRoutes = require("./routes/campsites"),
     commentRoutes = require("./routes/comments"),
     authRoutes = require("./routes/index");
 
+// Mongoose and Express Setup
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect("mongodb://localhost:27017/camp_scotland", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,11 +44,13 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Allows us to check current logged in user
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     next();
 });
 
+// Route Setup
 app.use("/", authRoutes);
 app.use("/campsites", campsiteRoutes);
 app.use("/campsites/:id/comments", commentRoutes);
