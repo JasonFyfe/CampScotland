@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Scottish Campsite finding website.">
     <link rel="stylesheet" href="/semantic/semantic.min.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"
@@ -11,3 +14,19 @@
 </head>
 
 <body>
+    <%- include("navbar") %>
+    <div class="ui container" id="content">
+        <% if (error && error.length > 0) { %>
+        <div class="ui error message">
+            <div class="header">
+                <%= error %>
+            </div>
+        </div>
+        <% } %>
+        <% if (success && success.length > 0) { %>
+        <div class="ui success message">
+            <div class="header">
+                <%= success %>
+            </div>
+        </div>
+        <% } %>
