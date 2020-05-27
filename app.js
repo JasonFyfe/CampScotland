@@ -15,7 +15,7 @@ var express = require('express'),
     // eslint-disable-next-line no-unused-vars
     seedDB = require('./seeds'),
     app = express(),
-    port = 4000; //TODO change back to 3000
+    port = 3000;
 
 // Requiring routes
 var campsiteRoutes = require("./routes/campsites"),
