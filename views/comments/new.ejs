@@ -1,20 +1,20 @@
 <%- include("../partials/header") %>
-<%- include("../partials/navbar") %>
-
-<div class="ui container nav-correction">
+<div class="ui container">
     <div class="ui centered segment">
-        <h1>Add Comment to <%= campsite.name %></h1>
+        <h1 class="ui teal header">Add Comment to <%= campsite.name %></h1>
         <form class="ui form" action="/campsites/<%= campsite._id %>/comments" method="POST">
             <div class="field">
                 <label for="comment[text]">Comment Text</label>
-                <input type="text" name="comment[text]" placeholder="Comment...">
+                <div class="ui left icon input">
+                    <i class="left quote icon"></i>
+                    <input type="text" name="comment[text]" placeholder="Comment...">
+                </div>
             </div>
             <div>
-                <input class="ui green button" type="submit">
+                <input class="ui teal button" type="submit">
             </div>
         </form>
     </div>
-    <a href="/campsites">Go Back</a>
+    <a href="/campsites/<%= campsite._id %>">Go Back</a>
 </div>
-
 <%- include("../partials/footer") %>

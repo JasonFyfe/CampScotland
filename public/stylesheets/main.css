@@ -1,18 +1,39 @@
-#logo {
-  margin-right: 1.5em;
+/* TODO - Revise all CSS rules, remove non-mandatory rules. */
+body {
+  background-color: #DADADA;
+  /* TODO - adjustment for eye strain */
 }
 
+/* Map */
 #map-container {
     width: 260px;
     height: 310px;
 }
-
 #map {
     height: 100%;
 }
 
-#form {
+/* Navbar */
+.ui#content{
+  height: 100%;
+  padding-top: 52.63px;
+}
+
+#logo {
+  margin-right: 1.5em;
+}
+
+/* Error Message */
+.message {
+  margin-top: 2em !important;
+}
+
+/* Login & Register Forms */
+.login-form {
   max-width: 450px;
+}
+.login-grid {
+  height: 90%;
 }
 
 .masthead {
@@ -36,10 +57,6 @@
 
 .ui.fluid.image {
   margin-bottom: 1em;
-}
-
-.nav-correction {
-  margin-top: 5em;
 }
 
 .ui.card > .image {
