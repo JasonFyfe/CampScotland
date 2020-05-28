@@ -17,6 +17,8 @@ body {
 .ui#content{
   height: 100%;
   padding-top: 52.63px;
+  position: relative;
+  z-index: 0;
 }
 
 #logo {
@@ -28,12 +30,12 @@ body {
   position: fixed;
   top: -50px;
   left: 20%;
+  z-index: 1;
 }
 .message {
   position: relative;
   top: 100px;
   left: auto;
-  z-index: 10;
   margin-top: 2em !important;
 }
 

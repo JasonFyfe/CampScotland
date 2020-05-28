@@ -15,22 +15,22 @@
 
 <body>
     <%- include("navbar") %>
+    <% if (error && error.length > 0) { %>
+    <div class="ui container message-container">
+        <div class="ui error message">
+            <div class="header">
+                <%= error %>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <% if (success && success.length > 0) { %>
+    <div class="ui container message-container">
+        <div class="ui success message">
+            <div class="header">
+                <%= success %>
+            </div>
+        </div>
+    </div>
+    <% } %>
     <div class="ui" id="content">
-        <% if (error && error.length > 0) { %>
-        <div class="ui container message-container">
-            <div class="ui error message">
-                <div class="header">
-                    <%= error %>
-                </div>
-            </div>
-        </div>
-        <% } %>
-        <% if (success && success.length > 0) { %>
-        <div class="ui container">
-            <div class="ui success message">
-                <div class="header">
-                    <%= success %>
-                </div>
-            </div>
-        </div>
-        <% } %>
