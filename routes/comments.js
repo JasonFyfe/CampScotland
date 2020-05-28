@@ -4,7 +4,7 @@ var Campsite = require("../models/campsite");
 var Comment = require("../models/comment");
 var middleware = require('../middleware');
 
-// Comments New
+// Comments New Form
 router.get("/new", middleware.isLoggedIn, (req, res) => {
     Campsite.findById(req.params.id, (err, campsite) => {
         if (err) {
@@ -20,11 +20,13 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     Campsite.findById(req.params.id, (err, campsite) => {
         if (err) {
             console.log(err);
+            req.flash("error", "The Campsite you are trying to comment on could not be found.");
             res.redirect("/campsites");
         } else {
             console.log(req.body.comment);
             Comment.create(req.body.comment, (err, comment) => {
                 if (err) {
+                    req.flash("error", "Unable to create Comment.");
                     console.log(err);
                 } else {
                     comment.author.id = req.user._id;
@@ -32,6 +34,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
                     comment.save();
                     campsite.comments.push(comment);
                     campsite.save();
+                    req.flash("success", "New Comment created successfully!");
                     res.redirect(`/campsites/${campsite.id}`);
                 }
             });
@@ -69,6 +72,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, (req, res) => {
         if (err) {
             res.redirect("back");
         } else {
+            req.flash("success", "Your comment has been deleted.");
             res.redirect(`/campsites/${req.params.id}`);
         }
     });

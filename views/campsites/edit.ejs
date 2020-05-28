@@ -1,34 +1,36 @@
 <%- include("../partials/header") %>
-<div class="ui container">
-    <div class="ui centered segment">
-        <h1 class="ui teal header">Edit <%= campsite.name %></h1>
-        <form class="ui form" action="/campsites/<%= campsite._id %>?_method=PUT" method="POST">
-            <div class="field">
-                <label for="name">Campsite Name</label>
-                <div class="ui left icon input">
-                    <i class="font icon"></i>
-                    <input type="text" name="campsite[name]" value="<%= campsite.name %>">
+<div class="ui middle aligned center aligned padded grid input-grid">
+    <div class="column input-form">
+        <div class="ui segment">
+            <h1 class="ui teal header">Edit <%= campsite.name %></h1>
+            <form class="ui form" action="/campsites/<%= campsite._id %>?_method=PUT" method="POST">
+                <div class="field">
+                    <label for="name">Campsite Name</label>
+                    <div class="ui left icon input">
+                        <i class="font icon"></i>
+                        <input type="text" name="campsite[name]" value="<%= campsite.name %>">
+                    </div>
                 </div>
-            </div>
-            <div class="field">
-                <label for="image">Campsite Image</label>
-                <div class="ui left icon input">
-                    <i class="image icon"></i>
-                    <input type="text" name="campsite[image]" value="<%= campsite.image %>">
+                <div class="field">
+                    <label for="image">Campsite Image</label>
+                    <div class="ui left icon input">
+                        <i class="image icon"></i>
+                        <input type="text" name="campsite[image]" value="<%= campsite.image %>">
+                    </div>
                 </div>
-            </div>
-            <div class="field">
-                <label for="description">Campsite Description</label>
-                <div class="ui left icon input">
-                    <i class="quote left icon"></i>
-                    <input type="text" name="campsite[description]" value="<%= campsite.description %>">
+                <div class="field">
+                    <label for="description">Campsite Description</label>
+                    <div class="ui left icon input">
+                        <i class="quote left icon"></i>
+                        <input type="text" name="campsite[description]" value="<%= campsite.description %>">
+                    </div>
                 </div>
-            </div>
-            <div>
-                <input class="ui teal button" type="submit">
-            </div>
-        </form>
+                <div>
+                    <input class="ui teal button" type="submit">
+                </div>
+            </form>
+        </div>
+        <a href="/campsites/<%= campsite.id %>">Go Back</a>
     </div>
-    <a href="/campsites/<%= campsite.id %>">Go Back</a>
 </div>
 <%- include("../partials/footer") %>

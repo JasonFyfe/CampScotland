@@ -1,12 +1,12 @@
 <%- include("../partials/header") %>
-<div class="ui vertical masthead center aligned container">
+<div class="ui inverted vertical masthead center aligned segment">
     <div class="ui text container">
-        <h1 class="ui header">View Campsites from all over Scotland!</h1>
+        <h1 class="ui inverted header">View Campsites from all over Scotland!</h1>
         <h2>Or add a new one...</h2>
         <a href="/campsites/new" class="ui huge teal button">Add Campsite</a>
     </div>
 </div>
-<div class="ui container">
+<div class="ui container segment card-container">
     <div class="ui four stackable cards">
         <% campsites.forEach(campsite => { %>
         <div class="ui card">

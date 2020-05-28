@@ -1,21 +1,22 @@
 <%- include("../partials/header") %>
 <div class="ui three column stackable grid segment container">
     <div class="ui row">
-        <div class="ui column">
-            <h1><%= campsite.name %></h1>
+        <div class="ui centered column">
+            <h1 class="ui centered header"><%= campsite.name %></h1>
         </div>
     </div>
     <div class="ui divider"></div>
     <div class="ui row">
         <div class="ui four wide column">
-            <div class="ui raised segments">
-                <div class="ui segment">One</div>
-                <div class="ui segment">Two</div>
-                <div class="ui segment">Three</div>
-            </div>
-            <div class="ui divider"></div>
             <div class="ui container" id="map-container">
                 <div id="map"></div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui raised segments">
+                <div class="ui secondary segment">One</div>
+                <div class="ui segment">Two</div>
+                <div class="ui secondary segment">Three</div>
+                <div class="ui segment">Four</div>
             </div>
         </div>
         <div class="ui twelve wide column">
@@ -25,10 +26,17 @@
                 </div>
                 <div class="ui grid">
                     <div class="ui row">
-                        <div class="ui three wide column">
+                        <div class="ui eight wide column">
                             <em>Created By - <strong
                                     style="text-transform: uppercase;"><%= campsite.author.username %></strong></em>
                         </div>
+                        <div class="ui eight wide column">
+                            <div class="ui right aligned container">
+                                <h4>£9.00/night</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui row">
                         <div class="ui two wide column">
                             <% if (currentUser && campsite.author.id.equals(currentUser._id)) { %>
                             <a href="/campsites/<%= campsite._id %>/edit" class="ui orange button">Edit</a>
@@ -41,11 +49,6 @@
                                 <button class="negative ui button">Delete</button>
                             </form>
                             <% } %>
-                        </div>
-                        <div class="ui nine wide column">
-                            <div class="ui right aligned container">
-                                <h4>£9.00/night</h4>
-                            </div>
                         </div>
                     </div>
                 </div>

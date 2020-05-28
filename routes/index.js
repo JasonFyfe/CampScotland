@@ -19,11 +19,11 @@ router.post("/register", (req, res) => {
     // eslint-disable-next-line no-unused-vars
     User.register(newUser, req.body.password, (err, user) => {
         if (err) {
-            console.log("Registration Error!");
-            console.log(err);
-            return res.render("auth/register");
+            req.flash("error", err.message);
+            return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, () => {
+            req.flash("error", "Welcome to Camp Scotland, " + user.username + "!");
             res.redirect("/campsites");
         });
     });
