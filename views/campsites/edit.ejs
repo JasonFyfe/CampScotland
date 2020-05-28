@@ -8,21 +8,28 @@
                     <label for="name">Campsite Name</label>
                     <div class="ui left icon input">
                         <i class="font icon"></i>
-                        <input type="text" name="campsite[name]" value="<%= campsite.name %>">
+                        <input type="text" name="campsite[name]" value="<%= campsite.name %>" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="price">Price per Night</label>
+                    <div class="ui left icon input">
+                        <i class="pound sign icon"></i>
+                        <input type="number" name="campsite[price]" value="<%= campsite.price %>" min="0.00" step="0.01" required>
                     </div>
                 </div>
                 <div class="field">
                     <label for="image">Campsite Image</label>
                     <div class="ui left icon input">
                         <i class="image icon"></i>
-                        <input type="text" name="campsite[image]" value="<%= campsite.image %>">
+                        <input type="text" name="campsite[image]" value="<%= campsite.image %>" required>
                     </div>
                 </div>
                 <div class="field">
                     <label for="description">Campsite Description</label>
                     <div class="ui left icon input">
                         <i class="quote left icon"></i>
-                        <input type="text" name="campsite[description]" value="<%= campsite.description %>">
+                        <input type="text" name="campsite[description]" value="<%= campsite.description %>" required>
                     </div>
                 </div>
                 <div>

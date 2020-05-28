@@ -2,8 +2,10 @@
 <div class="ui inverted vertical masthead center aligned segment">
     <div class="ui text container">
         <h1 class="ui inverted header">View Campsites from all over Scotland!</h1>
+        <% if (currentUser) { %>
         <h2>Or add a new one...</h2>
         <a href="/campsites/new" class="ui huge teal button">Add Campsite</a>
+        <% } %>
     </div>
 </div>
 <div class="ui container segment card-container">
