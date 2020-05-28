@@ -23,7 +23,7 @@ router.post("/register", (req, res) => {
             return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, () => {
-            req.flash("error", "Welcome to Camp Scotland, " + user.username + "!");
+            req.flash("success", "Welcome to Camp Scotland, " + user.username + "!");
             res.redirect("/campsites");
         });
     });
