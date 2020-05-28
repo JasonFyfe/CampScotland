@@ -15,8 +15,7 @@ var express = require('express'),
     // TODO ESLINT
     // eslint-disable-next-line no-unused-vars
     seedDB = require('./seeds'),
-    app = express(),
-    port = 3000;
+    app = express();
 
 // Requiring routes
 var campsiteRoutes = require("./routes/campsites"),
@@ -25,7 +24,7 @@ var campsiteRoutes = require("./routes/campsites"),
 
 // Mongoose and Express Setup
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb+srv://jasonfyfe:Jessica90ahlin@campscotland-wzstv.mongodb.net/camp_scotland?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
@@ -59,6 +58,6 @@ app.use("/", authRoutes);
 app.use("/campsites", campsiteRoutes);
 app.use("/campsites/:id/comments", commentRoutes);
 
-app.listen(port, () => {
-    console.log(`Camp Scotland Server listening on port: ${port}`);
+app.listen(process.env.PORT, () => {
+    console.log("Camp Scotland Server initialised.");
 });
