@@ -24,16 +24,30 @@ body {
 }
 
 /* Error Message */
+.message-container {
+  position: fixed;
+  top: -50px;
+  left: 20%;
+}
 .message {
+  position: relative;
+  top: 100px;
+  left: auto;
+  z-index: 10;
   margin-top: 2em !important;
 }
 
 /* Login & Register Forms */
-.login-form {
+.input-form {
   max-width: 450px;
 }
-.login-grid {
+.input-grid {
   height: 90%;
+}
+
+/* Campsite Cards */
+.card-container {
+  margin-top: 1em;
 }
 
 .masthead {
