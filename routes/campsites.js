@@ -18,13 +18,14 @@ router.get("/", (req, res) => {
 // CREATE ROUTE
 router.post("/", middleware.isLoggedIn, (req, res) => {
     var name = req.body.name;
+    var price = req.body.price;
     var image = req.body.image;
     var description = req.body.description;
     var author = {
         id: req.user._id,
         username: req.user.username
     };
-    var newCampsite = { name: name, image: image, description: description, author: author };
+    var newCampsite = { name: name, price: price, image: image, description: description, author: author };
 
     // TODO ESLINT
     // eslint-disable-next-line no-unused-vars
