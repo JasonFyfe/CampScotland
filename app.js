@@ -25,7 +25,7 @@ var campsiteRoutes = require("./routes/campsites"),
 
 // Mongoose and Express Setup
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb://localhost:27017/camp_scotland", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://jasonfyfe:Jessica90ahlin@campscotland-wzstv.mongodb.net/camp_scotland?retryWrites=true&w=majority", { useNewUrlParser: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.set('views', __dirname + '/views');
