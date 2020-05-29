@@ -1,14 +1,9 @@
-<div class="ui fixed inverted pointing menu">
+<div class="ui right vertical inverted menu sidebar">
     <a href="/" class="header item">
         <img class="logo" id="logo" src="/assets/logo.png" alt="Camp Scotland Logo">
         <span>Camp Scotland</span>
     </a>
-    <a href="/campsites" class="item" id="menu-item">Campsites</a>
-    <a class="right aligned toc item" id="toc-item" style="display: none;">
-        <i class="bars icon"></i>
-    </a>
-    <div class="right menu" id="right-menu">
-        <% if (!currentUser) { %>
+    <% if (!currentUser) { %>
         <div class="item">
             <a href="/login" class="ui inverted button">Log In</a>
         </div>
@@ -19,6 +14,6 @@
         <div class="item">
             <a href="/logout" class="ui inverted button">Logout</a>
         </div>
-        <% } %>
-    </div>
+    <% } %>
+    <a href="/campsites" class="item">Campsites</a>
 </div>

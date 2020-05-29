@@ -5,16 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A Scottish Campsite finding website.">
+    <link rel="stylesheet" href="/public/semantic/components/icon.css">
     <link rel="stylesheet" href="/semantic/semantic.min.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
-        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous" async defer></script>
-    <script src="/semantic/semantic.min.js" async defer></script>
+    <script src="/library/jquery-3.5.1.min.js"></script>
+    <script src="/semantic/semantic.min.js"></script>
+    <script src="/javascript/sidebar.js"></script>
+    <script>
+        $(document).ready(
+            function () {
+                $('.sidebar').sidebar('attach events', '#toc-item');
+            }
+        );
+    </script>
     <title>Camp Scotland</title>
 </head>
 
-<body>
-    <%- include("navbar") %>
+<body class="pushable">
+    <%- include("sidebar") %>
     <% if (error && error.length > 0) { %>
     <div class="ui container message-container">
         <div class="ui error message">
@@ -33,4 +41,6 @@
         </div>
     </div>
     <% } %>
-    <div class="ui" id="content">
+    <div class="pusher">
+        <%- include("navbar") %>
+        <div class="ui" id="content">

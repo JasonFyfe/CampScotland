@@ -16,6 +16,7 @@ var express = require('express'),
     // eslint-disable-next-line no-unused-vars
     seedDB = require('./seeds'),
     app = express();
+require('dotenv').config();
 
 // Requiring routes
 var campsiteRoutes = require("./routes/campsites"),
@@ -35,7 +36,7 @@ app.use(flash());
 
 // Passport configuration
 app.use(require('express-session')({
-    secret: "Secret needed here",
+    secret: process.env.PASSPORT_SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -58,6 +59,6 @@ app.use("/", authRoutes);
 app.use("/campsites", campsiteRoutes);
 app.use("/campsites/:id/comments", commentRoutes);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, process.env.IP, () => {
     console.log("Camp Scotland Server initialised.");
 });

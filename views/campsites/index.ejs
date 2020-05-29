@@ -8,11 +8,16 @@
         <% } %>
     </div>
 </div>
-<div class="ui container segment card-container">
-    <div class="ui four stackable cards">
+<div class="ui segment">
+    <div class="stackable ui four centered cards">
         <% campsites.forEach(campsite => { %>
         <div class="ui card">
-            <img class="image" src="<%= campsite.image %>">
+            <div class="content">
+                <%= campsite.name %>
+            </div>
+            <div class="image">
+                <img src="<%= campsite.image %>">
+            </div>
             <div class="content">
                 <div class="header">
                     <%= campsite.name %>
