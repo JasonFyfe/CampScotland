@@ -8,27 +8,20 @@
         <% } %>
     </div>
 </div>
-<div class="ui segment">
-    <div class="stackable ui four centered cards">
-        <% campsites.forEach(campsite => { %>
-        <div class="ui card">
-            <div class="content">
+<div class="ui centered cards container">
+    <% campsites.forEach(campsite => { %>
+    <div class="ui card">
+        <div class="image" style='background-image: url("<%= campsite.image %>");'></div>
+        <div class="content">
+            <div class="header">
                 <%= campsite.name %>
             </div>
-            <div class="image">
-                <img src="<%= campsite.image %>">
+            <div class="meta">
+                <%= campsite.description %>
             </div>
-            <div class="content">
-                <div class="header">
-                    <%= campsite.name %>
-                </div>
-                <div class="description">
-                    <%= campsite.description %>
-                </div>
-            </div>
-            <a href="/campsites/<%= campsite._id %>" class="ui bottom attached teal button">More Info</a>
         </div>
-        <% }); %>
+        <a href="/campsites/<%= campsite._id %>" class="ui bottom attached teal button">More Info</a>
     </div>
+    <% }); %>
 </div>
 <%- include("../partials/footer") %>
