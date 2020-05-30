@@ -1,0 +1,9 @@
+<%- include("../partials/header") %>
+
+<h1><%= user.username %></h1>
+<h1><%= user.firstName %></h1>
+<h1><%= user.lastName %></h1>
+<h1><%= user.email %></h1>
+<div class="image" id="avatar" style='background-image: url("<%= user.avatar %>");'></div>
+
+<%- include("../partials/footer") %>
