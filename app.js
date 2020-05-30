@@ -22,6 +22,7 @@ require('dotenv').config();
 // Requiring routes
 var campsiteRoutes = require("./routes/campsites"),
     commentRoutes = require("./routes/comments"),
+    userRoutes = require("./routes/users"),
     authRoutes = require("./routes/index");
 
 // Mongoose and Express Setup
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 app.use("/", authRoutes);
 app.use("/campsites", campsiteRoutes);
 app.use("/campsites/:id/comments", commentRoutes);
+app.use("/users", userRoutes);
 
 app.listen(process.env.PORT, process.env.IP, () => {
     console.log("Camp Scotland Server initialised.");

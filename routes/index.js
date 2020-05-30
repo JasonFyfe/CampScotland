@@ -18,13 +18,23 @@ router.get("/admin", (req, res) => {
 })
 // Register POST route
 router.post("/register", (req, res) => {
-    var newUser = new User({ username: req.body.username });
+    var newUser = new User({
+        username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        avatar: req.body.avatar,
+    });
+
+    console.log(newUser);
+    
     if(req.body.adminCode === process.env.ADMIN_SECRET){
         newUser.isAdmin = true;
     }
     // TODO ESLINT
     // eslint-disable-next-line no-unused-vars
     User.register(newUser, req.body.password, (err, user) => {
+
         if (err) {
             req.flash("error", err.message);
             return res.redirect("/register");

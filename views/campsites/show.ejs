@@ -29,8 +29,10 @@
                     <div class="ui grid">
                         <div class="ui row">
                             <div class="ui eight wide column">
-                                <em>Submitted By: 
-                                    <strong style="text-transform: uppercase;"><%= campsite.author.username %>,</strong>
+                                <em>Submitted By:
+                                    <a href="/users/<%= campsite.author.id %>">
+                                        <strong style="text-transform: uppercase;"><%= campsite.author.username %>,</strong>
+                                    </a>
                                     <%= moment(campsite.createdAt).fromNow() %> 
                                 </em>
                             </div>
@@ -77,8 +79,10 @@
                         <div class="ui divider"></div>
                         <div class="ui row">
                             <div class="ui five wide column">
-                                Posted by - <strong
-                                    style="text-transform: uppercase;"><%= comment.author.username %></strong>
+                                Posted by - 
+                                <a href="/users/<%= comment.author.id %>">
+                                    <strong style="text-transform: uppercase;"><%= comment.author.username %></strong>
+                                </a>
                             </div>
                             <div class="ui right aligned eleven wide column">
                                 <%= moment(comment.createdAt).fromNow() %>

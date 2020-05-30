@@ -60,3 +60,10 @@
   height: 250px;
   background-size: cover;
 }
+
+#avatar{
+  width: 290px;
+  height: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
