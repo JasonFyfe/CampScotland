@@ -18,6 +18,7 @@ var express = require('express'),
     app = express();
 require('dotenv').config();
 
+
 // Requiring routes
 var campsiteRoutes = require("./routes/campsites"),
     commentRoutes = require("./routes/comments"),
@@ -33,6 +34,9 @@ app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(flash());
 // seedDB(); - Seeds the Database
+
+// Moment.js Setup
+app.locals.moment = require('moment');
 
 // Passport configuration
 app.use(require('express-session')({

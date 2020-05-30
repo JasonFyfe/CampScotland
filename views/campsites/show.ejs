@@ -29,8 +29,10 @@
                     <div class="ui grid">
                         <div class="ui row">
                             <div class="ui eight wide column">
-                                <em>Created By - <strong
-                                        style="text-transform: uppercase;"><%= campsite.author.username %></strong></em>
+                                <em>Submitted By: 
+                                    <strong style="text-transform: uppercase;"><%= campsite.author.username %>,</strong>
+                                    <%= moment(campsite.createdAt).fromNow() %> 
+                                </em>
                             </div>
                             <div class="ui eight wide column">
                                 <div class="ui right aligned container">
@@ -79,7 +81,7 @@
                                     style="text-transform: uppercase;"><%= comment.author.username %></strong>
                             </div>
                             <div class="ui right aligned eleven wide column">
-                                10 days ago
+                                <%= moment(comment.createdAt).fromNow() %>
                             </div>
                         </div>
                         <!-- TODO refactor to CSS -->
