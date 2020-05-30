@@ -12,9 +12,16 @@ router.get("/", (req, res) => {
 router.get("/register", (req, res) => {
     res.render("auth/register");
 });
+// Admin Register Form
+router.get("/admin", (req, res) => {
+    res.render("auth/admin");
+})
 // Register POST route
 router.post("/register", (req, res) => {
     var newUser = new User({ username: req.body.username });
+    if(req.body.adminCode === process.env.ADMIN_SECRET){
+        newUser.isAdmin = true;
+    }
     // TODO ESLINT
     // eslint-disable-next-line no-unused-vars
     User.register(newUser, req.body.password, (err, user) => {

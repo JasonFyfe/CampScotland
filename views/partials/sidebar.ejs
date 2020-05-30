@@ -1,19 +1,26 @@
 <div class="ui right vertical inverted menu sidebar">
-    <a href="/" class="header item">
+    <div class="header item"> 
         <img class="logo" id="logo" src="https://i.imgur.com/I5A8RR8.png" alt="Camp Scotland Logo">
-        <span>Camp Scotland</span>
-    </a>
+        <span class="header">Camp Scotland</span>
+    </div>
     <% if (!currentUser) { %>
-        <div class="item">
-            <a href="/login" class="ui inverted button">Log In</a>
-        </div>
-        <div class="item">
-            <a href="/register" class="ui inverted button">Sign Up</a>
-        </div>
-        <% } else { %>
-        <div class="item">
-            <a href="/logout" class="ui inverted button">Logout</a>
-        </div>
+    <a href="/campsites" class="item">
+        <strong>All Campsites</strong>
+    </a>
+    <a href="/login" class="item">
+        <strong>Log In</strong>
+    </a>
+    <a href="/register" class="item">
+        <strong>Sign Up</strong>
+    </a>
+    <% } else { %>
+    <a href="" class="item" style="text-transform: uppercase;">
+        <strong>
+            <%- currentUser.username %>
+        </strong>
+    </a>
+    <a href="/campsites" class="item">All Campsites</a>
+    <a href="/logout" class="item">Logout</a>
     <% } %>
-    <a href="/campsites" class="item">Campsites</a>
+
 </div>

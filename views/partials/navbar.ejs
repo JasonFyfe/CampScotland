@@ -1,24 +1,30 @@
 <div class="ui fixed inverted pointing menu">
     <a href="/" class="header item">
-        <img class="logo" id="logo" src="https://i.imgur.com/I5A8RR8.png" alt="Camp Scotland Logo">
+        <img class="logo" src="https://i.imgur.com/I5A8RR8.png" alt="Camp Scotland Logo">
+    </a>
+    <a href="/campsites" class="header item">
         <span>Camp Scotland</span>
     </a>
-    <a href="/campsites" class="item" id="menu-item">Campsites</a>
     <a class="right aligned toc item" id="toc-item" style="display: none;">
         <i class="bars icon"></i>
     </a>
     <div class="right menu" id="right-menu">
         <% if (!currentUser) { %>
-        <div class="item">
-            <a href="/login" class="ui inverted button">Log In</a>
-        </div>
-        <div class="item">
-            <a href="/register" class="ui inverted button">Sign Up</a>
-        </div>
+        <a href="/login" class="item">
+            <strong>Log In</strong>
+        </a>
+        <a href="/register" class="item">
+            <strong>Sign Up</strong>
+        </a>
         <% } else { %>
-        <div class="item">
-            <a href="/logout" class="ui inverted button">Logout</a>
-        </div>
+        <a href="" class="item" style="text-transform: uppercase;">
+            <strong>
+                <%- currentUser.username %>
+            </strong>
+        </a>
+        <a href="/logout" class="item">
+            <strong>Logout</strong>
+        </a>
         <% } %>
     </div>
 </div>
