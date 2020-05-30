@@ -17,7 +17,7 @@
             <strong>Sign Up</strong>
         </a>
         <% } else { %>
-        <a href="" class="item" style="text-transform: uppercase;">
+        <a href="/users/<%= currentUser.id %>" class="item" style="text-transform: uppercase;">
             <strong>
                 <%- currentUser.username %>
             </strong>
