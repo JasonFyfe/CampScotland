@@ -2,8 +2,8 @@
 <div class="ui middle aligned center aligned padded grid input-grid">
     <div class="column input-form">
         <div class="ui segment">
-            <form class="ui form" action="/login" method="POST">
-                <h1 class="ui teal header">Login</h1>
+            <form class="ui form" action="/register" method="POST">
+                <h1 class="ui teal header">Admin Registration</h1>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
@@ -16,7 +16,13 @@
                         <input type="password" name="password" placeholder="Password" required>
                     </div>
                 </div>
-                <button class="ui teal button">Login</button>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="shield alternate icon"></i>
+                        <input type="text" name="adminCode" placeholder="Admin Code">
+                    </div>
+                </div>
+                <button class="ui teal button">Register</button>
             </form>
         </div>
     </div>

@@ -1,7 +1,5 @@
-/* TODO - Revise all CSS rules, remove non-mandatory rules. */
 .pusher {
   background-color: #DADADA !important;
-  /* TODO - adjustment for eye strain */
 }
 
 /* Map */
@@ -26,10 +24,6 @@
   left: auto;
   width: 100%;
   overflow-y: scroll;
-}
-
-#logo {
-  margin-right: 1.5em;
 }
 
 /* Error Message */

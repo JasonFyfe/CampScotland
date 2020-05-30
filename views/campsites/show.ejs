@@ -44,12 +44,12 @@
                         </div>
                         <div class="ui row">
                             <div class="ui two wide column">
-                                <% if (currentUser && campsite.author.id.equals(currentUser._id)) { %>
+                                <% if (currentUser && campsite.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                                 <a href="/campsites/<%= campsite._id %>/edit" class="ui orange button">Edit</a>
                                 <% } %>
                             </div>
                             <div class="ui two wide column">
-                                <% if (currentUser && campsite.author.id.equals(currentUser._id)) { %>
+                                <% if (currentUser && campsite.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                                 <form class="inline fields" action="/campsites/<%= campsite._id %>?_method=DELETE"
                                     method="POST">
                                     <button class="negative ui button">Delete</button>
@@ -90,7 +90,7 @@
                                 </p>
                             </div>
                         </div>
-                        <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                        <% if (currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                         <div class="ui row" style="padding-top: 0;">
                             <div class="ui two wide column">
                                 <a href="/campsites/<%= campsite._id %>/comments/<%= comment._id %>/edit"
@@ -119,8 +119,8 @@
 </div>
 <script>
     function initMap() {
-        var lat = <%= campsite.lat %>;
-        var lng = <%= campsite.lng %>;
+        var lat = parseFloat(`<%= campsite.lat %>`);
+        var lng = parseFloat(`<%= campsite.lng %>`);
         var center = { lat: lat, lng: lng };
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,
