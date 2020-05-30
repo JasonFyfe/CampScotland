@@ -22,7 +22,7 @@ router.get("/:id", (req, res) => {
         } else {
             res.render("users/show", {user: foundUser});
         }
-    })
+    });
 });
 
 module.exports = router;
