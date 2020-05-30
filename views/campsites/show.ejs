@@ -13,8 +13,9 @@
                     <div id="map"></div>
                 </div>
                 <div class="ui divider"></div>
+                <a class="ui teal button" href="https://www.google.com/maps/dir/?api=1&destination=<%= campsite.lat %>,<%= campsite.lng %>">Directions</a>
                 <div class="ui raised segments">
-                    <div class="ui secondary segment">One</div>
+                    <div class="ui teal segment">One</div>
                     <div class="ui segment">Two</div>
                     <div class="ui secondary segment">Three</div>
                     <div class="ui segment">Four</div>
@@ -118,18 +119,29 @@
 </div>
 <script>
     function initMap() {
-        // TODO - Refactor to EJS tag for lat & lng pulling data from DB.
-        var lat = 56.111;
-        var lng = -4.630;
+        var lat = <%= campsite.lat %>;
+        var lng = <%= campsite.lng %>;
         var center = { lat: lat, lng: lng };
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,
             center: center,
+            scrollwheel: false,
             disableDefaultUI: true
+        });
+        var contentString = `
+        <strong><%= campsite.name %><br/>
+            <%= campsite.location %></strong>
+            <p><%= campsite.description %></p>
+            `;
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
         });
         var marker = new google.maps.Marker({
             position: center,
             map: map
+        });
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
         });
     }
 </script>
