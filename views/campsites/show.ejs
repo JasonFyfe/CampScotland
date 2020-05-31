@@ -8,19 +8,6 @@
         </div>
         <div class="ui divider"></div>
         <div class="ui row">
-            <div class="ui four wide column">
-                <div class="ui container" id="map-container">
-                    <div id="map"></div>
-                </div>
-                <div class="ui divider"></div>
-                <a class="ui teal button" href="https://www.google.com/maps/dir/?api=1&destination=<%= campsite.lat %>,<%= campsite.lng %>">Directions</a>
-                <div class="ui raised segments">
-                    <div class="ui teal segment">One</div>
-                    <div class="ui segment">Two</div>
-                    <div class="ui secondary segment">Three</div>
-                    <div class="ui segment">Four</div>
-                </div>
-            </div>
             <div class="ui twelve wide column">
                 <div class="ui container">
                     <div class="ui fluid image">
@@ -120,6 +107,17 @@
                     </div>
                 </div>
             </div>
+            <div class="ui four wide column">
+                <div class="ui container dimmable" id="map-container">
+                    <div class="ui bottom aligned dimmer">
+                        <div class="content">
+                            <a class="ui teal button" href="https://www.google.com/maps/dir/?api=1&destination=<%= campsite.lat %>,<%= campsite.lng %>">Directions</a>
+                        </div>
+                    </div>
+                    <div id="map"></div>
+                </div>
+                <div class="ui divider"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -150,6 +148,15 @@
             infowindow.open(map, marker);
         });
     }
+</script>
+<script>
+    $(document).ready(
+        function () {
+            $('#map-container').dimmer({
+                on: 'hover'
+            });
+        }
+    );
 </script>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPPuvvK3Kf0dfD25JIgIwO2XW8JPwQX58&callback=initMap"></script>

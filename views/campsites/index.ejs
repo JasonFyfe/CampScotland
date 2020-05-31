@@ -17,7 +17,7 @@
                 <%= campsite.name %>
             </div>
             <div class="meta">
-                <%= campsite.description %>
+                Submitted by <%= campsite.author.username %> 
             </div>
         </div>
         <a href="/campsites/<%= campsite._id %>" class="ui bottom attached teal button">More Info</a>
