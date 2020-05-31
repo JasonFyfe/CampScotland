@@ -1,24 +1,64 @@
 <%- include("../partials/header") %>
-
-<div class="ui container segment" style="height: 100%;">
-    <div class="ui centered card">
-        <div class="image" id="avatar" style='background-image: url("<%= user.avatar %>");'></div>
-        <div class="content">
-            <div class="header">
-                <span><%= user.username %></span>
-            </div>
+<div class="ui middle aligned center aligned padded grid input-grid">
+    <div class="column input-form">
+        <div class="ui segment">
+            <form class="ui form" action="" method="POST">
+                <h1 class="ui teal header" style="text-transform: uppercase;"><%= user.username %>'s Profile</h1>
+                <div class="field">
+                    <div class="ui right labeled left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" value="<%= user.username %>" required>
+                        <div class="ui label">
+                            Username
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui right labeled input">
+                        <input type="text" name="firstName" value="<%= user.firstName %>" required>
+                        <div class="ui label">
+                            First Name
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui right labeled input">
+                        <input type="text" name="lastName" value="<%= user.lastName %>" required>
+                        <div class="ui label">
+                            Last Name
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon right labeled input">
+                        <i class="at icon"></i>
+                        <input type="email" name="email" value="<%= user.email %>">
+                        <div class="ui label">
+                            Email
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon right labeled input">
+                        <i class="user circle icon"></i>
+                        <input type="text" name="avatar" value="<%= user.avatar %>">
+                        <div class="ui label">
+                            Avatar
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon right labeled input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" value="<%= user.password %>" required>
+                        <div class="ui label">
+                            Password
+                        </div>
+                    </div>
+                </div>
+                <button class="ui teal button">Update!</button>
+            </form>
         </div>
-        <div class="meta">
-            <span class="sub header"><%= user.firstName %> <%= user.lastName %></span>
-        </div>
-        <div class="extra content">
-            <%= user.email %>
-        </div>
-        <% if (currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %> 
-        <a href="/users/<%= user.id %>/edit" class="ui bottom attached teal button">Edit Profile</a>
-        <% } %>
     </div>
-    <div class="ui divider"></div>
 </div>
-
 <%- include("../partials/footer") %>

@@ -6,11 +6,11 @@ var middlewareObj = {};
 middlewareObj.checkProfileOwnership = function (req, res, next) {
     if (req.isAuthenticated()) {
         User.findById(req.params.id, (err, foundUser) => {
-            if(err) {
+            if (err) {
                 req.flash("error", "User not found.");
                 res.redirect("back");
             } else {
-                if (foundUser.id.equals(req.user._id) || req.user.isAdmin) {
+                if (foundUser._id.equals(req.user._id) || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash("error", "You don't have permission to do that.");
@@ -31,7 +31,7 @@ middlewareObj.checkCampsiteOwnership = function (req, res, next) {
                 req.flash("error", "Campsite was not found.");
                 res.redirect("back");
             } else {
-                if (foundCampsite.author.id.equals(req.user._id)  || req.user.isAdmin) {
+                if (foundCampsite.author.id.equals(req.user._id) || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash("error", "You do not own this Campsite.");
@@ -51,7 +51,7 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
             if (err) {
                 res.redirect("back");
             } else {
-                if (foundComment.author.id.equals(req.user._id)  || req.user.isAdmin) {
+                if (foundComment.author.id.equals(req.user._id) || req.user.isAdmin) {
                     next();
                 } else {
                     req.flash("error", "You are not the author of this comment.");
@@ -65,7 +65,7 @@ middlewareObj.checkCommentOwnership = function (req, res, next) {
     }
 }
 
-middlewareObj.isLoggedIn = function(req, res, next) {
+middlewareObj.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
